@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Ornithopter",
+    "slug": "ornithopter-app",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#14100b",
+    "splash": {
+      "backgroundColor": "#14100b",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocalNetworkUsageDescription": "A app liga-se à estação de solo Raspberry Pi do Ornithopter na rede local para comandar o drone."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#14100b"
+      },
+      "permissions": ["INTERNET", "ACCESS_NETWORK_STATE"]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

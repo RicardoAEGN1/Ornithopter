@@ -1,8 +1,17 @@
-# Estação de Solo — Raspberry Pi (backend de visão e controlo)
+# Estação de Solo — Raspberry Pi (backend de controlo)
 
-> A Raspberry Pi da escola observa o Ornithopter com uma câmara, calcula o seu estado (posição, altitude, rotação) e envia comandos ao ESP32. O drone passa a voar **autónomo** — sem app, sem operador.
+> A Raspberry Pi da escola recebe comandos da **app Expo (telemóvel)** e do painel web, aplica as regras de segurança e envia setpoints ao ESP32. A **câmara** é um **extra opcional** de demonstração (seguimento autónomo por ArUco) — o drone voa e é comandável mesmo sem ela.
 
-## 1. Arquitetura
+## 1. Modos de operação
+
+| Modo | Câmara | Seguimento | Quem comanda |
+|---|---|---|---|
+| **A — Manual (base)** | ❌ | ❌ | App Expo / painel web → RPi → drone |
+| **B — Autónomo (extra)** | ✔ | ✔ ArUco | Mission planner da RPi (demo de capacidade) |
+
+No modo A, a altitude e a estabilização ficam a cargo do firmware (height-hold com barómetro BMP280 opcional) e dos comandos diretos da app. O modo B demonstra coordenação por visão — é o *show-off* científico, não o requisito.
+
+## 2. Arquitetura
 
 ```
         ┌───────────────────────────── Wi-Fi 2,4 GHz ─────────────────────────────┐
@@ -24,7 +33,7 @@
 - A RPi faz o **loop externo** (posição/altitude a ~30 Hz) — é o padrão Crazyflie: *position controller* no chão, *stabilizer* no drone.
 - Protocolo: **CRTP over UDP**, o mesmo que o cfclient usa — não inventamos nada.
 
-## 2. Como é que o drone é seguido (a tua pergunta)
+## 3. Como é que o drone é seguido (extra opcional)
 
 O drone leva um **marcador ArUco impresso** (4×4 cm) na parte de baixo/inferior da carenagem:
 
@@ -40,7 +49,20 @@ O drone leva um **marcador ArUco impresso** (4×4 cm) na parte de baixo/inferior
 
 **Alternativa ainda mais simples (Plano B):** 2 marcadores de cores (uma em cada braço frontal) → OpenCV `inRange` por cor → mais robusto a distância e luz, sem dependência do módulo `cv2.aruco`.
 
-## 3. Mapa das funções que propuseste → implementação
+## 3. Controlo por app Expo (telemóvel)
+
+O telemóvel fala **sempre com a RPi** (nunca com o drone):
+
+```
+app Expo ──HTTP POST /takeoff /land /goto /emergency──► RPi ──UDP──► ESP32
+app Expo ◄──WebSocket /ws/telemetry (10 Hz)──────────── RPi ◄─────── ESP32
+```
+
+- **Porquê passar sempre pela RPi?** Ponto único de segurança: a RPi valida geofence, bateria e watchdog **antes** de retransmitir qualquer comando — venha ele da app, do painel web ou do planner autónomo.
+- A app (pasta `app/`) tem: ecrã de ligação por IP, telemetria live, DECOLAR/ATERRAR e botão EMERGENCY sempre visível.
+- *Extra:* stream MJPEG da câmara no ecrã da app (FPV pela RPi) — só útil no modo B.
+
+## 4. Mapa das funções que propuseste → implementação
 
 | Função (a tua ideia) | Onde corre | Como |
 |---|---|---|
@@ -50,7 +72,7 @@ O drone leva um **marcador ArUco impresso** (4×4 cm) na parte de baixo/inferior
 | **Calcular a rotação atual do drone** | RPi (visão) + ESP32 (IMU) | Yaw do marcador por visão; roll/pitch finos por telemetria CRTP do IMU |
 | **Calcular a velocidade a usar em cada motor e a direção** | ESP32 (mixer) | Setpoints → PID interno → mistura X: `M1=T−P−R+Y, M2=T+P−R−Y, M3=T+P+R+Y, M4=T−P+R−Y` |
 
-## 4. Endpoints do painel (FastAPI)
+## 6. Endpoints do painel e da app (FastAPI)
 
 | Método | Rota | Ação |
 |---|---|---|
@@ -61,7 +83,7 @@ O drone leva um **marcador ArUco impresso** (4×4 cm) na parte de baixo/inferior
 | POST | `/emergency` | Motores OFF imediatamente |
 | WS | `/ws/telemetry` | Telemetria em tempo real (x, y, z, r/p/y, bateria) |
 
-## 5. Segurança (autonomia = regras extra)
+## 7. Segurança
 
 - Botão físico de **kill** na RPi (GPIO) e comando `/emergency` sempre ativo.
 - **Watchdog:** se a RPi perder o marcador > 1 s → `LAND` automático.
@@ -69,7 +91,7 @@ O drone leva um **marcador ArUco impresso** (4×4 cm) na parte de baixo/inferior
 - Bateria do drone < 3,4 V → aterragem automática.
 - Sempre: voo amarrado nas primeiras sessões.
 
-## 6. Requisitos (tudo grátis, tudo na escola)
+## 8. Requisitos (tudo grátis, tudo na escola)
 
 ```
 Raspberry Pi 4 (escola) + câmara CSI/USB (escola)

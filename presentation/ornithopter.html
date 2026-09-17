@@ -112,10 +112,14 @@
 
   <div class="diagram">
     <div class="row">
+      <div class="sketch box center">
+        <b>📱 App Expo (telemóvel)</b><br>
+        DECOLAR · ATERRAR · EMERGENCY<br>
+        <span class="small">telemetria live por WebSocket</span>
+      </div>
       <div class="sketch blue box center">
         <b>Raspberry Pi 4 — Server Backend</b><br>
-        <span class="small">(fica no chão, com câmara)</span><br>
-        vê o drone → calcula estado → manda comandos
+        valida e comanda · <span class="small">câmara = extra opcional</span>
       </div>
     </div>
     <div class="arrow">⇊ (Wi-Fi 2,4 GHz · UDP)</div>
@@ -129,7 +133,17 @@
   </div>
 
   <!-- ============ COMO SEGUE ============ -->
-  <h2><span class="n">2.</span>Como é que o drone é seguido?</h2>
+  <h2><span class="n">2.</span>Como se comanda — 2 modos</h2>
+  <div class="sketch blue">
+    <b>Modo A — Manual (base):</b> app Expo no telemóvel → RPi (valida segurança) → drone.
+    <b>Sem câmara!</b> A estabilização e altitude ficam no ESP32.
+  </div>
+  <div class="sketch">
+    <b>Modo B — Autónomo (extra, demonstra capacidade):</b> a câmara da RPi segue o
+    marcador ArUco do drone e voa sozinho — é o <i>show-off</i> científico.
+  </div>
+
+  <h2><span class="n">3.</span>Como é que o drone é seguido? <span class="small">(extra)</span></h2>
   <div class="sketch">
     A câmara da RPi deteta um <b>marcador ArUco</b> (quadrado tipo-QR de 4 cm) colado no drone.
     De cada imagem a 30 fps calcula-se:
@@ -143,7 +157,7 @@
   </div>
 
   <!-- ============ NÚMEROS ============ -->
-  <h2><span class="n">3.</span>Números que provam que voa</h2>
+  <h2><span class="n">4.</span>Números que provam que voa</h2>
   <table>
     <tr><th>peso total</th><th>empuxo</th><th>razão</th><th>autonomia</th><th>loop PID</th></tr>
     <tr>
@@ -157,7 +171,7 @@
   <div class="small">regra de ouro: empuxo ≥ 2× peso → hover a ~50 % de gás, sobra para manobrar ✓</div>
 
   <!-- ============ BOM ============ -->
-  <h2><span class="n">4.</span>Lista de material + custos</h2>
+  <h2><span class="n">5.</span>Lista de material + custos</h2>
   <div class="small">tabela completa com links: <a href="../docs/bom.csv">docs/bom.csv</a> (abre no Excel)</div>
   <table>
     <tr><th>componente</th><th>fornecedor</th><th>custo</th></tr>
@@ -173,13 +187,14 @@
   <div class="small">custo 0 € da escola: ESP32, ferro de soldar, cabos, multímetro, <b>Raspberry Pi + câmara</b> (~40 € evitados)</div>
 
   <!-- ============ SOFTWARE ============ -->
-  <h2><span class="n">5.</span>Software (open-source, nada inventado)</h2>
+  <h2><span class="n">6.</span>Software (open-source, nada inventado)</h2>
   <div class="diagram">
     <div class="row">
       <div class="sketch box">
         <b>No drone — ESP32</b><br>
         <a href="https://github.com/espressif/esp-drone">espressif/esp-drone</a><br>
-        <span class="small">firmware oficial da Espressif, portado do Crazyflie · PID interno a 500 Hz · GPL-3.0</span>
+        <span class="small">firmware oficial da Espressif, portado do Crazyflie · PID interno a 500 Hz · GPL-3.0</span><br><br>
+        <b>App de controlo:</b> Expo/React Native (pasta <code>app/</code>) — telemóvel → RPi → drone
       </div>
       <div class="sketch blue box">
         <b>No chão — Raspberry Pi</b><br>
@@ -190,7 +205,7 @@
   </div>
 
   <!-- ============ SISTEMAS & ALGORITMOS ============ -->
-  <h2><span class="n">6.</span>Sistemas & algoritmos (coordenação)</h2>
+  <h2><span class="n">6.5</span>Sistemas & algoritmos (coordenação)</h2>
   <div class="sketch">
     <b>3 camadas de controlo</b> — cada uma com um trabalho e uma velocidade:
     <ul>

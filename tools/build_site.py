@@ -29,6 +29,7 @@ NAV = """
   <a href="{root}docs/wiring.html">🔌 Ligações</a>
   <a href="{root}docs/ground-station.html">🖥 Estação de solo</a>
   <a href="{root}docs/algorithms.html">🧠 Algoritmos</a>
+  <a href="{root}app/README.html">📱 App Expo</a>
   <a href="{root}docs/build-plan.html">🛠 Construção</a>
   <a href="https://github.com/RicardoAEGN1/Ornithopter">GitHub ↗</a>
 </div>
@@ -85,6 +86,10 @@ def build_docs() -> None:
         md.reset()
         body = md.convert(src.read_text(encoding="utf-8"))
         write(SITE / "docs" / f"{src.stem}.html", page(src.stem.replace("-", " ").title(), body, root="../"))
+    # app README também no site
+    md.reset()
+    body = md.convert((ROOT / "app" / "README.md").read_text(encoding="utf-8"))
+    write(SITE / "app" / "README.html", page("App Expo — controlo", body, root="../"))
 
 
 def build_bom() -> None:
