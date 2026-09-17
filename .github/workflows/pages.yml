@@ -9,7 +9,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  administration: write
 
 concurrency:
   group: pages
@@ -30,11 +29,6 @@ jobs:
 
       - name: Build site
         run: python tools/build_site.py
-
-      - name: Configure Pages (enables it on first run)
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
