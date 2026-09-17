@@ -2,6 +2,14 @@
 
 > Drone quadcóptero estilo **Dune** (thopter), controlado por **ESP32** com firmware open-source **ESP-Drone** (Espressif). Projeto escolar de eletrónica — construído componente a componente, sem kits.
 
+**📖 Site do projeto (GitHub Pages):** https://ricardoaegn1.github.io/Ornithopter/ — apresentação, BOM interativo e todos os docs.
+
+## Esquema de ligações (visão geral)
+
+![Esquema de ligações Ornithopter](assets/wiring-diagram.svg)
+
+*Raspberry Pi (estação de solo, sem soldas) → Wi-Fi → ESP32 no drone → 4 motores com MOSFETs + IMU. Ordem de soldadura e legenda no diagrama; detalhes em [`docs/wiring.md`](docs/wiring.md) e [`docs/ground-station.md`](docs/ground-station.md).*
+
 ## Números-chave
 
 | Métrica | Valor |
@@ -20,7 +28,12 @@ docs/               Viabilidade, BOM (CSV p/ Excel), pinout, plano de construç�
 cad/                Modelo paramétrico OpenSCAD (frame + carenagem estilo Dune)
 presentation/       Apresentação HTML do projeto (abrir no browser)
 ground-station/     Estação de solo em Raspberry Pi (visão + controlo autónomo)
+assets/             Esquema à mão do criador + diagrama de ligações SVG
+tools/              build_site.py — gera o site do GitHub Pages
+site/               (gerado) site estático publicado no Pages
 ```
+
+> O site (`site/`) é gerado automaticamente por `.github/workflows/pages.yml` a cada push para `main`.
 
 ## Arquitetura (v2 — autonomia)
 

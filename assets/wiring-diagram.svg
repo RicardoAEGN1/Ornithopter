@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 860" font-family="'Comic Sans MS','Patrick Hand',cursive">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#1e1e1e"/>
+    </marker>
+    <marker id="arrb" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#1c7ed6"/>
+    </marker>
+  </defs>
+
+  <!-- fundo papel quadriculado -->
+  <defs>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#e6e2d8" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1240" height="860" fill="#fdfcf8"/>
+  <rect width="1240" height="860" fill="url(#grid)"/>
+
+  <text x="620" y="46" text-anchor="middle" font-size="30" fill="#1e1e1e">Ornithopter — ligações completas (esquema de montagem)</text>
+  <text x="620" y="72" text-anchor="middle" font-size="16" fill="#888">Ricardo Alexander, n13 · 11G · github.com/RicardoAEGN1/Ornithopter</text>
+
+  <!-- ============ RASPBERRY PI (estacao de solo) ============ -->
+  <g>
+    <rect x="60" y="110" width="300" height="200" rx="18" fill="#e7f5ff" stroke="#1c7ed6" stroke-width="3"
+          style="stroke-dasharray:none"/>
+    <rect x="80" y="130" width="120" height="70" rx="8" fill="#fff" stroke="#1c7ed6" stroke-width="2"/>
+    <text x="140" y="172" text-anchor="middle" font-size="15" fill="#1c7ed6">câmara</text>
+    <text x="210" y="150" font-size="19" font-weight="bold" fill="#1c7ed6">Raspberry Pi 4</text>
+    <text x="210" y="172" font-size="14" fill="#1e1e1e">Server Backend (no chão)</text>
+    <text x="210" y="196" font-size="13" fill="#555">· OpenCV + ArUco (segue o drone)</text>
+    <text x="210" y="216" font-size="13" fill="#555">· calcula altitude / rotação / xyz</text>
+    <text x="210" y="236" font-size="13" fill="#555">· PID externo → setpoints</text>
+    <text x="210" y="256" font-size="13" fill="#555">· painel FastAPI (browser)</text>
+    <text x="210" y="290" font-size="13" fill="#888">[sem soldas — tudo por Wi-Fi]</text>
+  </g>
+
+  <!-- seta Wi-Fi RPi -> ESP32 -->
+  <path d="M 360 200 Q 460 130 560 185" fill="none" stroke="#1c7ed6" stroke-width="3" marker-end="url(#arrb)" stroke-dasharray="8 6"/>
+  <text x="460" y="140" text-anchor="middle" font-size="15" fill="#1c7ed6">Wi-Fi 2,4 GHz · UDP (setpoints)</text>
+  <path d="M 560 215 Q 460 270 365 235" fill="none" stroke="#1c7ed6" stroke-width="2" marker-end="url(#arrb)" stroke-dasharray="8 6"/>
+  <text x="470" y="290" text-anchor="middle" font-size="13" fill="#1c7ed6">← telemetria (estado, bateria)</text>
+
+  <!-- ============ DRONE: frame central com ESP32 ============ -->
+  <g>
+    <!-- carenagem -->
+    <path d="M 560 150 Q 620 110 700 118 Q 790 130 830 175 Q 800 215 700 222 Q 590 218 560 175 Z"
+          fill="#fff3cd" stroke="#1e1e1e" stroke-width="3"/>
+    <text x="695" y="160" text-anchor="middle" font-size="17" font-weight="bold">ESP32-WROOM</text>
+    <text x="695" y="182" text-anchor="middle" font-size="13" fill="#555">firmware esp-drone · PID 500 Hz</text>
+    <text x="695" y="200" text-anchor="middle" font-size="13" fill="#555">+ marcador ArUco por baixo</text>
+
+    <!-- IMU -->
+    <rect x="585" y="238" width="110" height="46" rx="10" fill="#fff" stroke="#1e1e1e" stroke-width="2.5"/>
+    <text x="640" y="258" text-anchor="middle" font-size="13">MPU-9250</text>
+    <text x="640" y="275" text-anchor="middle" font-size="11" fill="#555">IMU · I2C</text>
+    <line x1="640" y1="222" x2="640" y2="238" stroke="#1e1e1e" stroke-width="2"/>
+    <text x="700" y="270" font-size="11" fill="#888">SDA→21 · SCL→22</text>
+    <text x="700" y="283" font-size="11" fill="#888">(4 fios soldados)</text>
+  </g>
+
+  <!-- ============ BARRA + e GND ============ -->
+  <line x1="470" y1="360" x2="1180" y2="360" stroke="#e03131" stroke-width="4"/>
+  <text x="478" y="348" font-size="14" fill="#e03131">+ vermelho (bateria +)</text>
+  <line x1="470" y1="820" x2="1180" y2="820" stroke="#555" stroke-width="4"/>
+  <text x="478" y="842" font-size="14" fill="#555">GND preto (comum)</text>
+
+  <!-- bateria -->
+  <g>
+    <rect x="380" y="420" width="130" height="80" rx="12" fill="#ffe3e3" stroke="#e03131" stroke-width="3"/>
+    <text x="445" y="455" text-anchor="middle" font-size="15">LiPo 1S</text>
+    <text x="445" y="475" text-anchor="middle" font-size="12" fill="#555">3,7 V · 450 mAh</text>
+    <text x="445" y="490" text-anchor="middle" font-size="11" fill="#888">JST-PH 2.0</text>
+    <line x1="445" y1="420" x2="445" y2="360" stroke="#e03131" stroke-width="3"/>
+    <line x1="445" y1="500" x2="445" y2="820" stroke="#555" stroke-width="3"/>
+  </g>
+
+  <!-- ============ 4 x motor + MOSFET ============ -->
+  <!-- pinos GPIO do ESP32 para os gates -->
+  <text x="640" y="320" font-size="12" fill="#555">GPIO 4 · 12 · 13 · 14 → PWM 20 kHz ↓</text>
+
+  <!-- M1 -->
+  <g>
+    <line x1="600" y1="222" x2="760" y2="392" stroke="#e67700" stroke-width="2" stroke-dasharray="5 4"/>
+    <rect x="720" y="400" width="180" height="88" rx="10" fill="#fff" stroke="#1e1e1e" stroke-width="2.5"/>
+    <text x="810" y="424" text-anchor="middle" font-size="14" font-weight="bold">MOTOR M1 · 8520 CCW</text>
+    <text x="810" y="444" text-anchor="middle" font-size="12" fill="#555">+ motor → barra vermelha</text>
+    <text x="810" y="462" text-anchor="middle" font-size="12" fill="#e67700">− motor → Drain MOSFET AO3400A</text>
+    <text x="810" y="479" text-anchor="middle" font-size="11" fill="#888">gate via 100Ω · pull-down 10kΩ · 1N4148</text>
+    <line x1="810" y1="488" x2="810" y2="820" stroke="#555" stroke-width="2.5"/>
+    <circle cx="810" cy="820" r="4" fill="#555"/>
+    <line x1="900" y1="440" x2="1040" y2="440" stroke="#e03131" stroke-width="2.5"/>
+    <text x="970" y="430" text-anchor="middle" font-size="11" fill="#e03131">solda 1</text>
+  </g>
+
+  <!-- M2 -->
+  <g>
+    <line x1="720" y1="210" x2="800" y2="565" stroke="#e67700" stroke-width="2" stroke-dasharray="5 4"/>
+    <rect x="720" y="575" width="180" height="88" rx="10" fill="#fff" stroke="#1e1e1e" stroke-width="2.5"/>
+    <text x="810" y="599" text-anchor="middle" font-size="14" font-weight="bold">MOTOR M2 · 8520 CW</text>
+    <text x="810" y="619" text-anchor="middle" font-size="12" fill="#555">+ motor → barra vermelha</text>
+    <text x="810" y="637" text-anchor="middle" font-size="12" fill="#e67700">− motor → Drain MOSFET AO3400A</text>
+    <text x="810" y="654" text-anchor="middle" font-size="11" fill="#888">gate via 100Ω · pull-down 10kΩ · 1N4148</text>
+    <line x1="810" y1="663" x2="810" y2="820" stroke="#555" stroke-width="2.5"/>
+    <circle cx="810" cy="820" r="4" fill="#555"/>
+    <line x1="900" y1="615" x2="1040" y2="615" stroke="#e03131" stroke-width="2.5"/>
+    <text x="970" y="605" text-anchor="middle" font-size="11" fill="#e03131">solda 2</text>
+  </g>
+
+  <!-- M3 -->
+  <g>
+    <line x1="830" y1="150" x2="1020" y2="392" stroke="#e67700" stroke-width="2" stroke-dasharray="5 4"/>
+    <rect x="960" y="400" width="180" height="88" rx="10" fill="#fff" stroke="#1e1e1e" stroke-width="2.5"/>
+    <text x="1050" y="424" text-anchor="middle" font-size="14" font-weight="bold">MOTOR M3 · 8520 CCW</text>
+    <text x="1050" y="444" text-anchor="middle" font-size="12" fill="#555">+ motor → barra vermelha</text>
+    <text x="1050" y="462" text-anchor="middle" font-size="12" fill="#e67700">− motor → Drain MOSFET AO3400A</text>
+    <text x="1050" y="479" text-anchor="middle" font-size="11" fill="#888">gate via 100Ω · pull-down 10kΩ · 1N4148</text>
+    <line x1="1050" y1="488" x2="1050" y2="820" stroke="#555" stroke-width="2.5"/>
+    <circle cx="1050" cy="820" r="4" fill="#555"/>
+    <line x1="960" y1="440" x2="920" y2="440" stroke="#e03131" stroke-width="2.5"/>
+  </g>
+
+  <!-- M4 -->
+  <g>
+    <line x1="760" y1="130" x2="1010" y2="565" stroke="#e67700" stroke-width="2" stroke-dasharray="5 4"/>
+    <rect x="960" y="575" width="180" height="88" rx="10" fill="#fff" stroke="#1e1e1e" stroke-width="2.5"/>
+    <text x="1050" y="599" text-anchor="middle" font-size="14" font-weight="bold">MOTOR M4 · 8520 CW</text>
+    <text x="1050" y="619" text-anchor="middle" font-size="12" fill="#555">+ motor → barra vermelha</text>
+    <text x="1050" y="637" text-anchor="middle" font-size="12" fill="#e67700">− motor → Drain MOSFET AO3400A</text>
+    <text x="1050" y="654" text-anchor="middle" font-size="11" fill="#888">gate via 100Ω · pull-down 10kΩ · 1N4148</text>
+    <line x1="1050" y1="663" x2="1050" y2="820" stroke="#555" stroke-width="2.5"/>
+    <circle cx="1050" cy="820" r="4" fill="#555"/>
+    <line x1="960" y1="615" x2="920" y2="615" stroke="#e03131" stroke-width="2.5"/>
+  </g>
+
+  <!-- ESP32 VIN da bateria -->
+  <path d="M 510 460 Q 545 420 575 225" fill="none" stroke="#e03131" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="515" y="330" font-size="11" fill="#e03131">VIN (5V)</text>
+
+  <!-- notas de soldadura -->
+  <g>
+    <rect x="60" y="560" width="290" height="200" rx="18" fill="#fff" stroke="#1e1e1e" stroke-width="2.5"/>
+    <text x="80" y="590" font-size="15" font-weight="bold">Ordem de soldadura 🔥</text>
+    <text x="80" y="616" font-size="12.5" fill="#555">1. JST → proto-board (+ / −)</text>
+    <text x="80" y="636" font-size="12.5" fill="#555">2. 4× MOSFET: source → GND</text>
+    <text x="80" y="656" font-size="12.5" fill="#555">3. 4× resistores gate 100Ω</text>
+    <text x="80" y="676" font-size="12.5" fill="#555">4. fios dos motores (− → drain)</text>
+    <text x="80" y="696" font-size="12.5" fill="#555">5. ESP32: VIN + GND + GPIOs</text>
+    <text x="80" y="716" font-size="12.5" fill="#555">6. IMU: 3V3 · GND · SDA · SCL</text>
+    <text x="80" y="742" font-size="12" fill="#e03131">⚠ testar com multímetro ANTES</text>
+    <text x="80" y="758" font-size="12" fill="#e03131">de ligar a bateria!</text>
+  </g>
+
+  <!-- legenda -->
+  <g>
+    <line x1="60" y1="360" x2="440" y2="360" stroke="#1e1e1e" stroke-width="0"/>
+    <text x="65" y="382" font-size="12" fill="#888">— — laranja: sinal PWM (gate)</text>
+    <text x="65" y="400" font-size="12" fill="#e03131">—— vermelho: +3,7 V</text>
+    <text x="65" y="418" font-size="12" fill="#555">—— cinza: GND</text>
+    <text x="65" y="436" font-size="12" fill="#1c7ed6">- - azul: Wi-Fi (sem fios)</text>
+  </g>
+</svg>
