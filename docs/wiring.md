@@ -2,6 +2,8 @@
 
 > Firmware: `espressif/esp-drone` (ESP-IDF v5.0). Pinos configuráveis no `menuconfig`.
 
+![Diagrama de ligações completo](../assets/wiring-diagram.svg)
+
 ## 1. Tabela de ligações
 
 | Sinal | Pino ESP32 | Destino | Notas |

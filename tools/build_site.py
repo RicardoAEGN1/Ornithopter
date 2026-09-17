@@ -28,6 +28,7 @@ NAV = """
   <a href="{root}docs/viability.html">📐 Viabilidade</a>
   <a href="{root}docs/wiring.html">🔌 Ligações</a>
   <a href="{root}docs/ground-station.html">🖥 Estação de solo</a>
+  <a href="{root}docs/algorithms.html">🧠 Algoritmos</a>
   <a href="{root}docs/build-plan.html">🛠 Construção</a>
   <a href="https://github.com/RicardoAEGN1/Ornithopter">GitHub ↗</a>
 </div>

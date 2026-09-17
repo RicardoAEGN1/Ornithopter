@@ -52,6 +52,7 @@ setpoints — ver [`docs/ground-station.md`](docs/ground-station.md).
 - [`docs/bom.md`](docs/bom.md) — lista de materiais com fornecedores e custos
 - [`docs/bom.csv`](docs/bom.csv) — mesma lista em CSV (abre no Excel com colunas certas)
 - [`docs/ground-station.md`](docs/ground-station.md) — estação de solo RPi: visão, controlo, segurança
+- [`docs/algorithms.md`](docs/algorithms.md) — sistemas e algoritmos: camadas de controlo, PID cascata, mixer, coordenação e multi-drone
 - [`ground-station/main.py`](ground-station/main.py) — skeleton executável (FastAPI + OpenCV)
 - [`docs/wiring.md`](docs/wiring.md) — pinout ESP32 e esquema de ligações
 - [`docs/build-plan.md`](docs/build-plan.md) — plano de construção em blocos com critérios de passe

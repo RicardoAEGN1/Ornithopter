@@ -189,8 +189,47 @@
     </div>
   </div>
 
+  <!-- ============ SISTEMAS & ALGORITMOS ============ -->
+  <h2><span class="n">6.</span>Sistemas & algoritmos (coordenação)</h2>
+  <div class="sketch">
+    <b>3 camadas de controlo</b> — cada uma com um trabalho e uma velocidade:
+    <ul>
+      <li><b>Missão</b> (RPi, ~1 Hz) — decide <i>o quê</i>: TAKEOFF → HOVER → GOTO → LAND</li>
+      <li><b>Posição</b> (RPi, ~30 Hz) — decide <i>como</i>: PID externo x,y,z → setpoints de atitude</li>
+      <li><b>Atitude</b> (ESP32, 500 Hz) — executa: PID cascata + mixer nos 4 motores</li>
+    </ul>
+    <span class="hand" style="color:var(--red)">quanto mais rápido o loop, mais perto do hardware!</span>
+  </div>
+  <div class="diagram">
+    <div class="row">
+      <div class="sketch box">
+        <b>Filtro complementar (estimar atitude)</b><br>
+        <span class="small">ângulo = 0,98·(ângulo + giro·dt) + 0,02·acelerómetro<br>
+        gyro é rápido mas deriva; acelerómetro não deriva mas é ruidoso — junta-se o melhor dos dois</span>
+      </div>
+      <div class="sketch blue box">
+        <b>PID em cascata (estabilizar)</b><br>
+        <span class="small">ângulo desejado → PID angular → PID rate (10× mais rápido) → motores<br>
+        sintonia na bancada: subir Kp até oscilar, Kp_final = 0,6·Kp_osc</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="sketch box">
+        <b>Mistura X (coordenar motores)</b><br>
+        <span class="small">M1 = T−P−R+Y · M2 = T+P−R−Y<br>M3 = T+P+R+Y · M4 = T−P+R−Y<br>
+        subir = T nos 4 · rodar = torque CW vs CCW</span>
+      </div>
+      <div class="sketch blue box">
+        <b>Segurança em 5 camadas</b><br>
+        <span class="small">pull-downs (hardware) → failsafe (firmware) → watchdog do marcador<br>
+        → geofence + bateria → botão EMERGENCY. Perdeu o marcador 1 s = aterra sozinho.</span>
+      </div>
+    </div>
+  </div>
+  <div class="small center">teoria completa (Kalman, anti-windup, multi-drone): <a href="algorithms.html">docs/algorithms.md</a></div>
+
   <!-- ============ SEGURANÇA ============ -->
-  <h2><span class="n">6.</span>Segurança</h2>
+  <h2><span class="n">7.</span>Segurança</h2>
   <div class="sketch">
     <ul>
       <li>watchdog: marcador perdido &gt; 1 s → <b>aterra sozinho</b></li>
