@@ -1,24 +1,24 @@
-﻿# COMPONENTE;ESPECIFICACAO;FORNECEDOR;QTD;PRECO UNITARIO (EUR);SUBTOTAL (EUR)
-Motor coreless 8520 high thrust;8,5x20 mm 3,7V ~24g empuxo (2x CW + 2x CCW);AliExpress / Amazon.es;4;2,50;10,00
-Helices 65 mm CW/CCW;Gemfan 65mm ou equivalente (+4 reserva);AliExpress / Amazon.es;8;0,40;3,20
-Bateria LiPo 1S 450 mAh 25C;Com JST-PH 2.0 e protecao;Loja RC local / Amazon;1;7,50;7,50
-Carregador LiPo 1S USB;Balanceador simples 1S;Loja RC local / Amazon;1;6,00;6,00
-IMU MPU-9250;Breakout GY-9250 giro+acel+mag I2C;AliExpress / Amazon.es;1;4,50;4,50
-MOSFET AO3400A;N-channel SOT-23 (lote);AliExpress;4;0,10;0,40
-Resistores 100R / 10k;Kit basico 1/4W;Escola / AliExpress;8;0,05;0,40
-Diodo flyback 1N4148;Protecao MOSFET;Escola / AliExpress;4;0,05;0,20
-Conector JST-PH 2.0;Par femea/macho com fio;AliExpress;1;1,00;1,00
-Fio silicone 22 AWG;1m vermelho + 1m preto;Escola / AliExpress;1;2,00;2,00
-Proto-board perfurada;Base MOSFETs;Loja eletronica local;1;3,00;3,00
-Filamento PLA;Frame + carenagem (~40g);Escola (impressora 3D);1;4,00;4,00
-LED 5mm laranja + resistor 220R;Indicador spice;Escola / AliExpress;2;0,10;0,20
-Velcro dupla-face + abracadeiras;Fixacao bateria e IMU;Loja local;1;1,50;1,50
-Parafusos M2 + porcas;Montagem motores;Loja local / escola;8;0,05;0,40
-Fornecido pela escola (0 EUR);ESP32 devkit WROOM-32;Escola;1;0,00;0,00
-Fornecido pela escola (0 EUR);Ferro de soldar + estanho;Escola;1;0,00;0,00
-Fornecido pela escola (0 EUR);Cabos jumpers;Escola;1;0,00;0,00
-Fornecido pela escola (0 EUR);Multimetro;Escola;1;0,00;0,00
-Fornecido pela escola (0 EUR);Raspberry Pi + camara (estacao de solo);Escola;1;0,00;0,00
-TOTAL COMPRADO;;;;;44,30
-ORCAMENTO MAXIMO;;;;;70,00
-FOLGA;;;;;25,70
+# COMPONENTE;ESPECIFICACAO;FORNECEDOR;QTD;PRECO UNITARIO (EUR);SUBTOTAL (EUR);LINK
+Motor coreless 8520 high thrust;8,5x20 mm 3,7V ~24g empuxo (2x CW + 2x CCW);AliExpress / Amazon.es;4;2,50;10,00;https://pt.aliexpress.com/w/wholesale-8520-coreless-motor.html
+Helices 65 mm CW/CCW;Gemfan 65mm ou equivalente (+4 reserva);AliExpress / Amazon.es;8;0,40;3,20;https://pt.aliexpress.com/w/wholesale-65mm-propeller.html
+Bateria LiPo 1S 450 mAh 25C;Com JST-PH 2.0 e protecao;Amazon.es / Loja RC local;1;7,50;7,50;https://www.amazon.es/s?k=lipo+1s+450mah+jst
+Carregador LiPo 1S USB;Balanceador simples 1S;Amazon.es / Loja RC local;1;6,00;6,00;https://www.amazon.es/s?k=1s+lipo+charger+usb
+IMU MPU-9250;Breakout GY-9250 giro+acel+mag I2C;AliExpress / Amazon.es;1;4,50;4,50;https://pt.aliexpress.com/w/wholesale-gy-9250.html
+MOSFET AO3400A;N-channel SOT-23 (lote);AliExpress;4;0,10;0,40;https://pt.aliexpress.com/w/wholesale-ao3400a.html
+Resistores 100R / 10k;Kit basico 1/4W;Escola / AliExpress;8;0,05;0,40;https://pt.aliexpress.com/w/wholesale-resistor-kit.html
+Diodo flyback 1N4148;Protecao MOSFET;Escola / AliExpress;4;0,05;0,20;https://pt.aliexpress.com/w/wholesale-1n4148-diode.html
+Conector JST-PH 2.0;Par femea/macho com fio;AliExpress;1;1,00;1,00;https://pt.aliexpress.com/w/wholesale-jst-ph-2.0.html
+Fio silicone 22 AWG;1m vermelho + 1m preto;Escola / AliExpress;1;2,00;2,00;https://pt.aliexpress.com/w/wholesale-22awg-silicone-wire.html
+Proto-board perfurada;Base MOSFETs;Loja eletronica local / Amazon.es;1;3,00;3,00;https://www.amazon.es/s?k=placa+perfurada+proto
+Filamento PLA;Frame + carenagem (~40g);Escola (impressora 3D);1;4,00;4,00;-
+LED 5mm laranja + resistor 220R;Indicador spice;Escola / AliExpress;2;0,10;0,20;https://pt.aliexpress.com/w/wholesale-led-5mm.html
+Velcro dupla-face + abracadeiras;Fixacao bateria e IMU;Loja local;1;1,50;1,50;-
+Parafusos M2 + porcas;Montagem motores;Loja local / AliExpress;8;0,05;0,40;https://pt.aliexpress.com/w/wholesale-m2-screw-kit.html
+Fornecido pela escola (0 EUR);ESP32 devkit WROOM-32;Escola;1;0,00;0,00;-
+Fornecido pela escola (0 EUR);Ferro de soldar + estanho;Escola;1;0,00;0,00;-
+Fornecido pela escola (0 EUR);Cabos jumpers;Escola;1;0,00;0,00;-
+Fornecido pela escola (0 EUR);Multimetro;Escola;1;0,00;0,00;-
+Fornecido pela escola (0 EUR);Raspberry Pi + camara (estacao de solo);Escola;1;0,00;0,00;-
+TOTAL COMPRADO;;;;;44,30;
+ORCAMENTO MAXIMO;;;;;70,00;
+FOLGA;;;;;25,70;
