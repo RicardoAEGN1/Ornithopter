@@ -3,310 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ORNITHOPTER — Projeto Drone Estilo Dune</title>
+<title>Ornithopter — Documento do Projeto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Patrick+Hand&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --sand: #c47a3d;
-    --sand-light: #e8a765;
-    --spice: #ff7b24;
-    --bg: #14100b;
-    --card: #1e1810;
-    --text: #e8dcc8;
-    --muted: #a89880;
-    --line: #3a2f22;
+    --ink: #1e1e1e;
+    --red: #e03131;
+    --blue: #1c7ed6;
+    --paper: #fdfcf8;
+    --grid: #e6e2d8;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; }
-  .hero { text-align: center; padding: 48px 24px 24px; border-bottom: 1px solid var(--line);
-    background: radial-gradient(ellipse at 50% -20%, rgba(255,123,36,.18), transparent 60%); }
-  .hero h1 { font-size: 3rem; letter-spacing: .35em; color: var(--sand-light); font-weight: 200; }
-  .hero .sub { color: var(--muted); margin-top: 10px; letter-spacing: .12em; font-size: .95rem; }
-  .hero .tag { display:inline-block; margin-top: 14px; padding: 4px 14px; border: 1px solid var(--spice);
-    color: var(--spice); border-radius: 20px; font-size: .8rem; letter-spacing: .2em; }
-  main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 64px; }
-  section { margin-bottom: 40px; }
-  h2 { color: var(--sand-light); font-weight: 300; letter-spacing: .15em; margin-bottom: 16px;
-    border-left: 3px solid var(--spice); padding-left: 12px; text-transform: uppercase; font-size: 1.2rem; }
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px; }
-  .card h3 { color: var(--sand); font-size: 1rem; margin-bottom: 10px; letter-spacing: .08em; }
-  p, li { line-height: 1.65; color: var(--text); font-size: .95rem; }
-  ul { padding-left: 20px; }
-  table { width: 100%; border-collapse: collapse; font-size: .88rem; }
-  th { text-align: left; color: var(--sand); border-bottom: 1px solid var(--sand); padding: 8px 6px; font-weight: 500; letter-spacing: .05em; }
-  td { padding: 7px 6px; border-bottom: 1px solid var(--line); }
-  tr:last-child td { border-bottom: none; }
-  .total td { color: var(--spice); font-weight: 600; border-top: 1px solid var(--sand); }
-  .svg-wrap { background: linear-gradient(180deg, #1a140d 0%, #241a10 100%); border: 1px solid var(--line);
-    border-radius: 10px; padding: 10px; }
-  .caption { text-align: center; color: var(--muted); font-size: .8rem; margin-top: 8px; letter-spacing: .08em; }
-  .stat { display: inline-block; background: var(--card); border: 1px solid var(--line); border-radius: 8px;
-    padding: 10px 18px; margin: 4px; text-align: center; }
-  .stat b { display: block; color: var(--spice); font-size: 1.3rem; font-weight: 300; }
-  .stat span { color: var(--muted); font-size: .75rem; letter-spacing: .1em; }
-  svg text { font-family: 'Segoe UI', sans-serif; }
-  .badge { color: var(--spice); }
+  body {
+    background: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--ink);
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    padding: 40px 20px 80px;
+  }
+  .page { max-width: 980px; margin: 0 auto; }
+  h1 { font-family: 'Gloria Hallelujah', cursive; font-size: 3rem; text-align: center; }
+  h2 {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 1.6rem;
+    margin: 48px 0 18px;
+    display: inline-block;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 2px;
+  }
+  h2 .n { color: var(--red); font-family: 'Caveat', cursive; font-size: 2rem; margin-right: 8px; }
+  .subtitle { text-align: center; color: #666; font-size: 1.3rem; margin-top: 6px; }
+  .author {
+    font-family: 'Caveat', cursive;
+    text-align: center;
+    font-size: 1.6rem;
+    margin-top: 14px;
+    color: var(--red);
+    transform: rotate(-1deg);
+  }
+  .sketch {
+    border: 2.5px solid var(--ink);
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    padding: 22px 26px;
+    margin: 14px 0;
+    background: rgba(255,255,255,.65);
+  }
+  .sketch.blue { border-color: var(--blue); border-radius: 15px 255px 15px 225px / 225px 15px 255px 15px; }
+  .arrow { font-size: 2rem; text-align: center; margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 1.1rem; }
+  th, td { border: 2px solid var(--ink); padding: 6px 12px; text-align: left; }
+  th { font-family: 'Gloria Hallelujah', cursive; font-weight: normal; background: rgba(28,126,214,.08); }
+  td.price { text-align: right; white-space: nowrap; }
+  tr.total td { border-top: 3px double var(--ink); font-weight: bold; }
+  tr.total .big { color: var(--red); font-family: 'Caveat', cursive; font-size: 1.5rem; }
+  a { color: var(--blue); text-decoration: underline wavy; }
+  ul { list-style: none; padding-left: 4px; }
+  ul li::before { content: "→ "; color: var(--red); font-weight: bold; }
+  .hand { font-family: 'Caveat', cursive; font-size: 1.5rem; }
+  .small { font-size: 1rem; color: #555; }
+  .center { text-align: center; }
+  .diagram { display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
+  .diagram .row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .diagram .box { flex: 1 1 260px; max-width: 420px; }
+  .footnote { margin-top: 60px; text-align: center; color: #777; font-family: 'Caveat', cursive; font-size: 1.4rem; }
+  .imgwrap { text-align: center; margin: 16px 0; }
+  .imgwrap img {
+    max-width: 100%;
+    border: 2.5px solid var(--ink);
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    background: #fff;
+    padding: 8px;
+  }
+  .caption { font-family: 'Caveat', cursive; color: #555; font-size: 1.3rem; margin-top: 6px; }
+  .pin { display:inline-block; background: #fff3cd; border: 2px solid var(--ink); border-radius: 6px;
+    padding: 2px 10px; transform: rotate(-1.2deg); }
+  @media print { body { background: none; } }
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="hero">
-  <h1>ORNITHOPTER</h1>
-  <div class="sub">DRONE QUADCÓPTERO ESTILO DUNE · CONTROLADO POR ESP32 · WI-FI</div>
-  <div class="tag">PROJETO DE AULA — COMPONENTE A COMPONENTE</div>
+  <!-- ============ CAPA ============ -->
+  <h1>✈ Ornithopter</h1>
+  <div class="subtitle">drone quadcóptero estilo <u>Dune</u> · ESP32 + Raspberry Pi</div>
+  <div class="author">por Ricardo Alexander, n13 · 11G</div>
+
+  <div class="sketch" style="margin-top:34px">
+    <b>A ideia num parágrafo:</b> construir um drone <i>componente a componente, sem kits</i> —
+    frame X impresso em 3D com carenagem estilo "thopter", 4 motores coreless 8520, cérebro
+    <b>ESP32</b> com o firmware open-source <b>ESP-Drone</b> (Espressif) — e uma
+    <b>Raspberry Pi no chão</b> que vê o drone com uma câmara, calcula altitude, rotação e
+    velocidade de cada motor, e voa sozinho. Tudo por <span class="pin">44,30 €</span> de um
+    orçamento de 70 €.
+  </div>
+
+  <!-- ============ O TEU ESBOÇO ============ -->
+  <h2><span class="n">1.</span>O esquema original (à mão)</h2>
+  <div class="imgwrap">
+    <img src="../assets/schema-raspberry-v1.png" alt="Esquema à mão do drone com Raspberry Pi, sensor e funções do backend">
+    <div class="caption">esquema do criador: drone + RPi Server Backend + sensor · "calcular altitude, seguir corpos, gerir movimento, rotação e velocidade por motor"</div>
+  </div>
+
+  <div class="diagram">
+    <div class="row">
+      <div class="sketch blue box center">
+        <b>Raspberry Pi 4 — Server Backend</b><br>
+        <span class="small">(fica no chão, com câmara)</span><br>
+        vê o drone → calcula estado → manda comandos
+      </div>
+    </div>
+    <div class="arrow">⇊ (Wi-Fi 2,4 GHz · UDP)</div>
+    <div class="row">
+      <div class="sketch box center">
+        <b>Ornithopter (voa)</b><br>
+        ESP32 + IMU MPU-9250 · 4× motor 8520<br>
+        marcador ArUco colado por baixo
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ COMO SEGUE ============ -->
+  <h2><span class="n">2.</span>Como é que o drone é seguido?</h2>
+  <div class="sketch">
+    A câmara da RPi deteta um <b>marcador ArUco</b> (quadrado tipo-QR de 4 cm) colado no drone.
+    De cada imagem a 30 fps calcula-se:
+    <ul>
+      <li><b>altitude</b> — o marcador é maior/menor consoante a distância (solvePnP)</li>
+      <li><b>posição x, y</b> — centro do marcador na imagem</li>
+      <li><b>rotação (yaw)</b> — ângulo do quadrilátero</li>
+      <li><b>velocidade por motor</b> — PID externo na RPi manda setpoints; o ESP32 mistura nos 4 motores</li>
+    </ul>
+    <span class="hand" style="color:var(--red)">não precisa de GPS nem sensores caros — só uma folha impressa! :)</span>
+  </div>
+
+  <!-- ============ NÚMEROS ============ -->
+  <h2><span class="n">3.</span>Números que provam que voa</h2>
+  <table>
+    <tr><th>peso total</th><th>empuxo</th><th>razão</th><th>autonomia</th><th>loop PID</th></tr>
+    <tr>
+      <td>~78 g</td>
+      <td>~150 g</td>
+      <td class="price"><b style="color:var(--red)">2,0×</b></td>
+      <td>6–11 min</td>
+      <td>500 Hz</td>
+    </tr>
+  </table>
+  <div class="small">regra de ouro: empuxo ≥ 2× peso → hover a ~50 % de gás, sobra para manobrar ✓</div>
+
+  <!-- ============ BOM ============ -->
+  <h2><span class="n">4.</span>Lista de material + custos</h2>
+  <div class="small">tabela completa com links: <a href="../docs/bom.csv">docs/bom.csv</a> (abre no Excel)</div>
+  <table>
+    <tr><th>componente</th><th>fornecedor</th><th>custo</th></tr>
+    <tr><td>4× motor coreless 8520 (24 g empuxo)</td><td><a href="https://pt.aliexpress.com/w/wholesale-8520-coreless-motor.html">AliExpress</a> / Amazon.es</td><td class="price">10,00 €</td></tr>
+    <tr><td>8× hélice 65 mm CW/CCW</td><td><a href="https://pt.aliexpress.com/w/wholesale-65mm-propeller.html">AliExpress</a></td><td class="price">3,20 €</td></tr>
+    <tr><td>LiPo 1S 450 mAh + carregador USB</td><td><a href="https://www.amazon.es/s?k=lipo+1s+450mah+jst">Amazon.es</a> / loja RC</td><td class="price">13,50 €</td></tr>
+    <tr><td>IMU MPU-9250</td><td><a href="https://pt.aliexpress.com/w/wholesale-gy-9250.html">AliExpress</a></td><td class="price">4,50 €</td></tr>
+    <tr><td>MOSFETs, resistores, diodos, JST</td><td><a href="https://pt.aliexpress.com/w/wholesale-ao3400a.html">AliExpress</a></td><td class="price">2,00 €</td></tr>
+    <tr><td>fio, proto-board, velcro, parafusos, LEDs</td><td>loja local / escola</td><td class="price">7,10 €</td></tr>
+    <tr><td>filamento PLA (frame + carenagem)</td><td>escola (impressora 3D)</td><td class="price">4,00 €</td></tr>
+    <tr class="total"><td colspan="2">TOTAL <span class="small">(orçamento 70 € → folga 25,70 €)</span></td><td class="price big">44,30 €</td></tr>
+  </table>
+  <div class="small">custo 0 € da escola: ESP32, ferro de soldar, cabos, multímetro, <b>Raspberry Pi + câmara</b> (~40 € evitados)</div>
+
+  <!-- ============ SOFTWARE ============ -->
+  <h2><span class="n">5.</span>Software (open-source, nada inventado)</h2>
+  <div class="diagram">
+    <div class="row">
+      <div class="sketch box">
+        <b>No drone — ESP32</b><br>
+        <a href="https://github.com/espressif/esp-drone">espressif/esp-drone</a><br>
+        <span class="small">firmware oficial da Espressif, portado do Crazyflie · PID interno a 500 Hz · GPL-3.0</span>
+      </div>
+      <div class="sketch blue box">
+        <b>No chão — Raspberry Pi</b><br>
+        OpenCV (<a href="https://docs.opencv.org/4.x/d5/dae/tutorial_aruco_detection.html">ArUco</a>) + FastAPI<br>
+        <span class="small">código nosso: <a href="https://github.com/RicardoAEGN1/Ornithopter">ground-station/main.py</a> · painel TAKEOFF / LAND / EMERGENCY</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SEGURANÇA ============ -->
+  <h2><span class="n">6.</span>Segurança</h2>
+  <div class="sketch">
+    <ul>
+      <li>watchdog: marcador perdido &gt; 1 s → <b>aterra sozinho</b></li>
+      <li>geofence por software (2×2 m, máx. 1,5 m de altura)</li>
+      <li>botão EMERGENCY no painel + kill físico na RPi</li>
+      <li>primeiros voos amarrados com fio de pesca</li>
+      <li>LiPo em saco de fogo; nunca abaixo de 3,3 V</li>
+    </ul>
+  </div>
+
+  <div class="footnote">"the spice must flow" · Ornithopter 2026 · Ricardo Alexander, n13, 11G · repo: github.com/RicardoAEGN1/Ornithopter</div>
+
 </div>
-
-<main>
-
-<!-- ================= CONCEITO ================= -->
-<section>
-  <h2>Conceito visual</h2>
-  <div class="grid2">
-    <div class="svg-wrap">
-      <svg viewBox="0 0 500 340" width="100%">
-        <defs>
-          <radialGradient id="sandG" cx="50%" cy="30%" r="80%">
-            <stop offset="0%" stop-color="#e8a765"/><stop offset="100%" stop-color="#8a5a2b"/>
-          </radialGradient>
-        </defs>
-        <!-- sombra chão -->
-        <ellipse cx="250" cy="300" rx="190" ry="14" fill="#000" opacity=".45"/>
-        <!-- anéis de hélice (traseiros, mais escuros) -->
-        <g opacity=".75">
-          <ellipse cx="105" cy="185" rx="52" ry="50" fill="none" stroke="#6b4a26" stroke-width="5"/>
-          <ellipse cx="105" cy="185" rx="40" ry="38" fill="#e8a765" opacity=".25"/>
-          <ellipse cx="395" cy="185" rx="52" ry="50" fill="none" stroke="#6b4a26" stroke-width="5"/>
-          <ellipse cx="395" cy="185" rx="40" ry="38" fill="#e8a765" opacity=".25"/>
-        </g>
-        <!-- anéis frontais -->
-        <ellipse cx="70" cy="150" rx="60" ry="58" fill="none" stroke="#c47a3d" stroke-width="6"/>
-        <ellipse cx="70" cy="150" rx="46" ry="44" fill="#e8a765" opacity=".3"/>
-        <ellipse cx="430" cy="150" rx="60" ry="58" fill="none" stroke="#c47a3d" stroke-width="6"/>
-        <ellipse cx="430" cy="150" rx="46" ry="44" fill="#e8a765" opacity=".3"/>
-        <!-- carenagem thopter -->
-        <path d="M 130 215 Q 150 165 250 160 Q 350 165 370 215 Q 350 240 250 242 Q 150 240 130 215 Z"
-              fill="url(#sandG)" stroke="#5a3a18" stroke-width="2"/>
-        <path d="M 250 160 Q 262 120 300 105 Q 268 118 252 158 Z" fill="#c47a3d"/>
-        <!-- cabina -->
-        <ellipse cx="250" cy="195" rx="46" ry="16" fill="#2a1e12" stroke="#e8a765" stroke-width="1.5"/>
-        <ellipse cx="250" cy="193" rx="34" ry="9" fill="#4a3418" opacity=".8"/>
-        <!-- quilha -->
-        <path d="M 180 238 L 320 238 L 300 258 L 200 258 Z" fill="#6b4a26"/>
-        <!-- pernas de aterragem -->
-        <path d="M 200 255 L 190 285 M 300 255 L 310 285" stroke="#6b4a26" stroke-width="5" fill="none"/>
-        <line x1="165" y1="286" x2="230" y2="286" stroke="#6b4a26" stroke-width="5"/>
-        <line x1="272" y1="286" x2="336" y2="286" stroke="#6b4a26" stroke-width="5"/>
-        <!-- motores (gondolas) -->
-        <circle cx="70" cy="150" r="12" fill="#3a2a18" stroke="#c47a3d" stroke-width="2"/>
-        <circle cx="430" cy="150" r="12" fill="#3a2a18" stroke="#c47a3d" stroke-width="2"/>
-        <circle cx="105" cy="185" r="10" fill="#3a2a18" stroke="#6b4a26" stroke-width="2"/>
-        <circle cx="395" cy="185" r="10" fill="#3a2a18" stroke="#6b4a26" stroke-width="2"/>
-        <text x="250" y="322" text-anchor="middle" fill="#a89880" font-size="13" letter-spacing="2">VISTA LATERAL — CASCO TIPO "THOPTER"</text>
-      </svg>
-    </div>
-    <div class="svg-wrap">
-      <svg viewBox="0 0 500 340" width="100%">
-        <!-- braços X -->
-        <line x1="150" y1="90" x2="350" y2="250" stroke="#8a5a2b" stroke-width="16"/>
-        <line x1="350" y1="90" x2="150" y2="250" stroke="#8a5a2b" stroke-width="16"/>
-        <!-- anéis de hélice -->
-        <g>
-          <circle cx="125" cy="72" r="55" fill="none" stroke="#c47a3d" stroke-width="6"/>
-          <circle cx="125" cy="72" r="42" fill="#e8a765" opacity=".28"/>
-          <path d="M 125 72 L 152 52" stroke="#f5d9a8" stroke-width="5"/>
-          <circle cx="375" cy="72" r="55" fill="none" stroke="#c47a3d" stroke-width="6"/>
-          <circle cx="375" cy="72" r="42" fill="#e8a765" opacity=".28"/>
-          <path d="M 375 72 L 348 92" stroke="#f5d9a8" stroke-width="5"/>
-          <circle cx="125" cy="268" r="55" fill="none" stroke="#c47a3d" stroke-width="6"/>
-          <circle cx="125" cy="268" r="42" fill="#e8a765" opacity=".28"/>
-          <path d="M 125 268 L 98 248" stroke="#f5d9a8" stroke-width="5"/>
-          <circle cx="375" cy="268" r="55" fill="none" stroke="#c47a3d" stroke-width="6"/>
-          <circle cx="375" cy="268" r="42" fill="#e8a765" opacity=".28"/>
-          <path d="M 375 268 L 402 288" stroke="#f5d9a8" stroke-width="5"/>
-        </g>
-        <!-- corpo central -->
-        <rect x="195" y="135" width="110" height="70" rx="14" fill="#3a2a18" stroke="#e8a765" stroke-width="2"/>
-        <rect x="213" y="150" width="74" height="18" rx="6" fill="#14100b" stroke="#c47a3d" stroke-width="1.5"/>
-        <text x="250" y="163" text-anchor="middle" fill="#e8a765" font-size="11" letter-spacing="1">ESP32</text>
-        <rect x="213" y="174" width="74" height="16" rx="4" fill="#14100b" stroke="#6b4a26"/>
-        <text x="250" y="186" text-anchor="middle" fill="#a89880" font-size="9">MPU-9250 IMU</text>
-        <!-- baterias -->
-        <rect x="228" y="196" width="44" height="14" rx="3" fill="#8a1f1f" stroke="#e8a765"/>
-        <text x="250" y="226" text-anchor="middle" fill="#a89880" font-size="9">LiPo 1S 450 mAh</text>
-        <!-- motores -->
-        <circle cx="125" cy="72" r="11" fill="#3a2a18" stroke="#f5d9a8" stroke-width="2"/>
-        <circle cx="375" cy="72" r="11" fill="#3a2a18" stroke="#f5d9a8" stroke-width="2"/>
-        <circle cx="125" cy="268" r="11" fill="#3a2a18" stroke="#f5d9a8" stroke-width="2"/>
-        <circle cx="375" cy="268" r="11" fill="#3a2a18" stroke="#f5d9a8" stroke-width="2"/>
-        <!-- setas rotação -->
-        <path d="M 155 45 A 40 40 0 0 1 165 65" fill="none" stroke="#ff7b24" stroke-width="2" marker-end="url(#arr)"/>
-        <path d="M 345 99 A 40 40 0 0 1 335 79" fill="none" stroke="#ff7b24" stroke-width="2"/>
-        <path d="M 95 295 A 40 40 0 0 1 85 275" fill="none" stroke="#ff7b24" stroke-width="2"/>
-        <path d="M 405 241 A 40 40 0 0 1 415 261" fill="none" stroke="#ff7b24" stroke-width="2"/>
-        <text x="250" y="330" text-anchor="middle" fill="#a89880" font-size="13" letter-spacing="2">VISTA DE TOPO — FRAME X · 4 × 8520 + ANÉIS</text>
-      </svg>
-    </div>
-  </div>
-  <div class="caption">Render conceptual · OpenSCAD paramétrico disponível em cad/ornithopter.scad</div>
-</section>
-
-<!-- ================= ESTÁTISTICAS ================= -->
-<section>
-  <h2>Números-chave</h2>
-  <div style="text-align:center">
-    <div class="stat"><b>~78 g</b><span>PESO TOTAL</span></div>
-    <div class="stat"><b>~150 g</b><span>EMPUXO (4 MOTORES)</span></div>
-    <div class="stat"><b>2.0×</b><span>RAZÃO EMPUXO/PESO</span></div>
-    <div class="stat"><b>6–11 min</b><span>AUTONOMIA</span></div>
-    <div class="stat"><b>44,30 €</b><span>CUSTO TOTAL</span></div>
-    <div class="stat"><b>500 Hz</b><span>LOOP PID</span></div>
-  </div>
-</section>
-
-<!-- ================= ASSIGNMENT ================= -->
-<section>
-  <h2>Assignment</h2>
-  <div class="grid2">
-    <div class="card">
-      <h3>1 · Nome do projeto</h3>
-      <p><span class="badge">ORNITHOPTER</span> — o veículo voador do universo Dune (Frank Herbert, 1965).</p>
-      <h3 style="margin-top:14px">2 · Descrição pormenorizada</h3>
-      <p>Quadcóptero com estética do "thopter" de Dune: carenagem em casco com quilha e 4 rotores em anéis-góndola. Controlador de voo é um ESP32 com o firmware open-source ESP-Drone (Espressif), que implementa um PID em cascata a 500 Hz sobre os dados de um IMU MPU-9250. O comando é um telemóvel ligado por Wi-Fi (2,4 GHz) à app ESP-Drone. Cada módulo — motor+MOSFET, IMU, bateria, frame — é construído e testado individualmente, sem kits comerciais. A carenagem é desenhada em CAD (OpenSCAD) e impressa em 3D.</p>
-    </div>
-    <div class="card">
-      <h3>3 · Lista de material + 4 · Fornecedor</h3>
-      <table>
-        <tr><th>Componente</th><th>Fornecedor</th><th>Custo</th></tr>
-        <tr><td>4× Motor coreless 8520 (24 g empuxo)</td><td>AliExpress / Amazon.es</td><td>10,00 €</td></tr>
-        <tr><td>4(+4)× Hélices 65 mm CW/CCW</td><td>AliExpress / Amazon.es</td><td>3,20 €</td></tr>
-        <tr><td>LiPo 1S 450 mAh 25C + carregador USB</td><td>Loja RC local / Amazon</td><td>13,50 €</td></tr>
-        <tr><td>IMU MPU-9250 (GY-9250)</td><td>AliExpress / Amazon.es</td><td>4,50 €</td></tr>
-        <tr><td>4× MOSFET AO3400A + resistores + diodos</td><td>AliExpress (lotes)</td><td>1,00 €</td></tr>
-        <tr><td>JST-PH, fio silicone, proto-board</td><td>Loja eletrónica local</td><td>6,00 €</td></tr>
-        <tr><td>PLA (frame + carenagem)</td><td>Escola (impressora 3D)</td><td>4,00 €</td></tr>
-        <tr><td>Velcro, abraçadeiras, parafusos M2, LEDs</td><td>Loja local / escola</td><td>2,10 €</td></tr>
-        <tr class="total"><td>TOTAL</td><td>—</td><td>44,30 € / 70 €</td></tr>
-      </table>
-      <p style="margin-top:10px; color:var(--muted); font-size:.82rem">Fornecido pela escola a custo 0 €: ESP32 devkit, ferro de soldar, cabos, multímetro (~40 € de valor evitado).</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ESQUEMA ELÉTRICO ================= -->
-<section>
-  <h2>Esquema elétrico</h2>
-  <div class="svg-wrap">
-    <svg viewBox="0 0 900 380" width="100%">
-      <defs>
-        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-          <path d="M0,0 L6,3 L0,6 Z" fill="#e8a765"/>
-        </marker>
-      </defs>
-      <!-- bateria -->
-      <rect x="30" y="150" width="110" height="80" rx="10" fill="#3a1414" stroke="#c43d3d" stroke-width="2"/>
-      <text x="85" y="185" text-anchor="middle" fill="#e8a765" font-size="14">LiPo 1S</text>
-      <text x="85" y="205" text-anchor="middle" fill="#a89880" font-size="11">3,7 V · 450 mAh</text>
-      <!-- trilho positivo -->
-      <line x1="140" y1="170" x2="860" y2="170" stroke="#c43d3d" stroke-width="3"/>
-      <text x="150" y="160" fill="#c43d3d" font-size="11">+ (VERMELHO)</text>
-      <!-- trilho GND -->
-      <line x1="140" y1="320" x2="860" y2="320" stroke="#8a8a8a" stroke-width="3"/>
-      <text x="150" y="338" fill="#8a8a8a" font-size="11">GND (PRETO)</text>
-      <!-- ESP32 -->
-      <rect x="380" y="200" width="140" height="90" rx="10" fill="#1e3424" stroke="#4caf7d" stroke-width="2"/>
-      <text x="450" y="240" text-anchor="middle" fill="#e8dcc8" font-size="15">ESP32-WROOM</text>
-      <text x="450" y="262" text-anchor="middle" fill="#8fceae" font-size="10">firmware ESP-Drone</text>
-      <text x="450" y="278" text-anchor="middle" fill="#8fceae" font-size="10">Wi-Fi 2,4 GHz · PID 500 Hz</text>
-      <!-- alimentaçao ESP32 -->
-      <line x1="300" y1="170" x2="300" y2="220" stroke="#c43d3d" stroke-width="2" marker-end="url(#arr)"/>
-      <line x1="300" y1="220" x2="380" y2="220" stroke="#c43d3d" stroke-width="2"/>
-      <text x="330" y="188" fill="#c43d3d" font-size="10">VIN</text>
-      <line x1="330" y1="290" x2="330" y2="320" stroke="#8a8a8a" stroke-width="2"/>
-      <line x1="330" y1="290" x2="380" y2="290" stroke="#8a8a8a" stroke-width="2"/>
-      <!-- MPU -->
-      <rect x="560" y="215" width="120" height="60" rx="8" fill="#241d34" stroke="#9b7de8" stroke-width="2"/>
-      <text x="620" y="243" text-anchor="middle" fill="#e8dcc8" font-size="13">MPU-9250</text>
-      <text x="620" y="260" text-anchor="middle" fill="#b8a5f0" font-size="10">IMU · I2C</text>
-      <line x1="520" y1="240" x2="560" y2="240" stroke="#9b7de8" stroke-width="2" stroke-dasharray="4 3"/>
-      <text x="524" y="231" fill="#9b7de8" font-size="9">SDA21·SCL22</text>
-      <!-- motores x4 -->
-      <g>
-        <rect x="720" y="30" width="150" height="52" rx="8" fill="#2b2113" stroke="#e8a765"/>
-        <text x="795" y="52" text-anchor="middle" fill="#e8a765" font-size="11">M1 8520 CCW</text>
-        <text x="795" y="68" text-anchor="middle" fill="#a89880" font-size="9">AO3400A ← GPIO4</text>
-        <rect x="720" y="98" width="150" height="52" rx="8" fill="#2b2113" stroke="#e8a765"/>
-        <text x="795" y="120" text-anchor="middle" fill="#e8a765" font-size="11">M2 8520 CW</text>
-        <text x="795" y="136" text-anchor="middle" fill="#a89880" font-size="9">AO3400A ← GPIO12</text>
-        <rect x="720" y="230" width="150" height="52" rx="8" fill="#2b2113" stroke="#e8a765"/>
-        <text x="795" y="252" text-anchor="middle" fill="#e8a765" font-size="11">M3 8520 CCW</text>
-        <text x="795" y="268" text-anchor="middle" fill="#a89880" font-size="9">AO3400A ← GPIO13</text>
-        <rect x="720" y="298" width="150" height="52" rx="8" fill="#2b2113" stroke="#e8a765"/>
-        <text x="795" y="320" text-anchor="middle" fill="#e8a765" font-size="11">M4 8520 CW</text>
-        <text x="795" y="336" text-anchor="middle" fill="#a89880" font-size="9">AO3400A ← GPIO14</text>
-      </g>
-      <!-- ligaçoes motores -->
-      <line x1="720" y1="56" x2="690" y2="56" stroke="#c43d3d" stroke-width="2"/>
-      <line x1="690" y1="56" x2="690" y2="170" stroke="#c43d3d" stroke-width="2"/>
-      <line x1="720" y1="124" x2="710" y2="124" stroke="#c43d3d" stroke-width="2"/>
-      <line x1="710" y1="124" x2="710" y2="170" stroke="#c43d3d" stroke-width="2"/>
-      <line x1="720" y1="256" x2="700" y2="256" stroke="#c43d3d" stroke-width="2"/>
-      <line x1="700" y1="256" x2="700" y2="170" stroke="#c43d3d" stroke-width="2"/>
-      <line x1="720" y1="324" x2="680" y2="324" stroke="#c43d3d" stroke-width="2"/>
-      <line x1="680" y1="324" x2="680" y2="170" stroke="#c43d3d" stroke-width="2"/>
-      <!-- GND motores -->
-      <line x1="795" y1="282" x2="795" y2="298" stroke="#8a8a8a" stroke-width="0"/>
-      <text x="655" y="30" fill="#e8a765" font-size="12" letter-spacing="1">PWM LEDC 20 kHz</text>
-      <text x="450" y="368" text-anchor="middle" fill="#a89880" font-size="12" letter-spacing="2">MOSFET N-CH POR MOTOR · GATE VIA 100 Ω · PULL-DOWN 10 kΩ · FLYBACK 1N4148</text>
-    </svg>
-  </div>
-  <div class="caption">Esquema simplificado · detalhes completos em docs/wiring.md</div>
-</section>
-
-<!-- ================= SOFTWARE ================= -->
-<section>
-  <h2>Software (open-source, não inventamos)</h2>
-  <div class="grid2">
-    <div class="card">
-      <h3>Firmware — espressif/esp-drone</h3>
-      <ul>
-        <li>Port oficial do Crazyflie (Bitcraze) para ESP32</li>
-        <li>Estabilizer: PID cascata rate→attitude a 500 Hz</li>
-        <li>Modos: <b>Stabilize</b> (base) · Height-hold (BMP280) · Position-hold (PMW3901)</li>
-        <li>ESP-IDF v5.0 · GPL-3.0</li>
-        <li>Nosso trabalho: pinos no <i>menuconfig</i>, calibração IMU, afinação PID</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Controlo — app ESP-Drone</h3>
-      <ul>
-        <li>iOS + Android open-source (Espressif)</li>
-        <li>Liga por Wi-Fi ao drone "ESPDRONE-xxxx"</li>
-        <li>Joystick virtual + telemetria (roll/pitch/yaw, bateria)</li>
-        <li>Alternativa: cfclient (PC) via protocolo Crazyflie</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ================= RISCOS ================= -->
-<section>
-  <h2>Viabilidade e riscos</h2>
-  <div class="card">
-    <table>
-      <tr><th>Risco</th><th>Mitigação</th><th>Estado</th></tr>
-      <tr><td>Empuxo insuficiente (&lt;2× peso)</td><td>Motores "high thrust" ~24 g; frame ≤ 30 g; validar empuxo na balança antes de montar</td><td class="badge">PROVADO NOS CÁLCULOS</td></tr>
-      <tr><td>Peso da carenagem</td><td>PLA 0,8 mm, ≤ 25 g; só se monta depois de voar</td><td class="badge">CONTROLADO</td></tr>
-      <tr><td>Interferência Wi-Fi no IMU</td><td>MPU-9250 a ≥2 cm do ESP32; fios torcidos</td><td class="badge">CONHECIDO</td></tr>
-      <tr><td>Firmware complexo</td><td>Usar ESP-Drone oficial, não escrever do zero</td><td class="badge">MITIGADO</td></tr>
-      <tr><td>Segurança</td><td>Voo amarrado, hélices fora nos testes, óculos</td><td class="badge">CHECKLIST</td></tr>
-    </table>
-  </div>
-</section>
-
-<footer style="text-align:center; color:var(--muted); font-size:.8rem; padding: 20px; letter-spacing:.15em">
-  ORNITHOPTER · "The spice must flow" · Projeto escolar de eletrónica · ESP32 + ESP-Drone · 2026
-</footer>
-
-</main>
 </body>
 </html>
