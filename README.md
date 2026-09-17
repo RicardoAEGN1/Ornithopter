@@ -16,15 +16,30 @@
 ## Estrutura
 
 ```
-docs/           Viabilidade, BOM (lista de materiais), pinout, plano de construção
-cad/            Modelo paramétrico OpenSCAD (frame + carenagem estilo Dune)
-presentation/   Apresentação HTML do projeto (abrir no browser)
+docs/               Viabilidade, BOM (CSV p/ Excel), pinout, plano de construção
+cad/                Modelo paramétrico OpenSCAD (frame + carenagem estilo Dune)
+presentation/       Apresentação HTML do projeto (abrir no browser)
+ground-station/     Estação de solo em Raspberry Pi (visão + controlo autónomo)
 ```
+
+## Arquitetura (v2 — autonomia)
+
+```
+Telemóvel/PC ──► Raspberry Pi (câmara + OpenCV) ──UDP/CRTP──► ESP32 ──► 4 motores
+      painel         seguimento ArUco · altitude ·       PID interno · mixer
+                     rotação · velocidades/direção       (firmware esp-drone)
+```
+
+O drone leva um marcador ArUco; a RPi calcula posição/altitude/rotação por visão e envia
+setpoints — ver [`docs/ground-station.md`](docs/ground-station.md).
 
 ## Documentos
 
 - [`docs/viability.md`](docs/viability.md) — estudo de viabilidade (arquitetura, empuxo/peso, potência, estabilidade)
 - [`docs/bom.md`](docs/bom.md) — lista de materiais com fornecedores e custos
+- [`docs/bom.csv`](docs/bom.csv) — mesma lista em CSV (abre no Excel com colunas certas)
+- [`docs/ground-station.md`](docs/ground-station.md) — estação de solo RPi: visão, controlo, segurança
+- [`ground-station/main.py`](ground-station/main.py) — skeleton executável (FastAPI + OpenCV)
 - [`docs/wiring.md`](docs/wiring.md) — pinout ESP32 e esquema de ligações
 - [`docs/build-plan.md`](docs/build-plan.md) — plano de construção em blocos com critérios de passe
 - [`cad/ornithopter.scad`](cad/ornithopter.scad) — CAD paramétrico (OpenSCAD → STL)
@@ -40,6 +55,7 @@ presentation/   Apresentação HTML do projeto (abrir no browser)
 | Motores | 4× coreless 8520 + MOSFET AO3400A |
 | Bateria | LiPo 1S 450 mAh 25C |
 | App | [ESP-Drone-Android](https://github.com/EspressifApps/esp-drone-android) / iOS |
+| Estação de solo | Raspberry Pi 4 + OpenCV (ArUco) · FastAPI |
 | CAD | OpenSCAD |
 
 *"The spice must flow."* 🕌
